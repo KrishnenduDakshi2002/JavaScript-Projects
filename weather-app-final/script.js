@@ -203,10 +203,14 @@ function getInput(){
 
             
            
+        }).catch(()=>{
+            alert("[ERROR]:Facing issues while fetching data!")
         });
 
 
         
+    }).catch(()=>{
+        alert("[ERROR]:You are trying a location which is not in our database or there might some issues with data fetching");
     });
 }
 
