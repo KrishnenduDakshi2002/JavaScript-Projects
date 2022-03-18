@@ -47,14 +47,14 @@ function getInput(){
                 let hour = Number(dateString.substring(0,2));
                 if (hour > 12) {
                   let h = hour % 12;
-                  return h.toString() + min_sec + " " + "PM";
+                  return h.toString() + min_sec + " " + "pm"; //PM
                 }
                 else if(hour==12)
                 {
-                    return dateString + " " + "PM";
+                    return dateString + " " + "pm"; //PM
                 }
                 else {
-                  return dateString + " " + "AM";
+                  return dateString + " " + "am"; //AM
                 }
               }
 
@@ -83,12 +83,12 @@ function getInput(){
             //current sun rise and sun set
             document.querySelector(".sun-rise-value").innerHTML = `${timeConvert(getDate(`${data.current.sunrise}`).toLocaleTimeString())}`;
             document.querySelector(".sun-set-value").innerHTML = `${timeConvert(getDate(`${data.current.sunset}`).toLocaleTimeString())}`;
-            
+            console.log(timeConvert(getDate(`${data.current.sunset}`).toLocaleTimeString()));
             // current - other data section
             document.querySelector(".feel-temp").innerHTML = `${(data.current.feels_like -273).toPrecision(2)}℃`;
             document.querySelector(".humidity").innerHTML = `${data.current.humidity}`;
             document.querySelector(".UVI").innerHTML = `${data.current.uvi}`;
-            document.querySelector(".wind-speed").innerHTML = `${data.current.wind_speed} km/h`;
+            document.querySelector(".wind-speed").innerHTML = `${(data.current.wind_speed*3.6).toPrecision(2)} km/h`;
             document.getElementById("current-wind-direction").style.transform = `rotate(-${data.current.wind_deg}deg)`;
             
             //end of current temperature section
@@ -151,7 +151,7 @@ function getInput(){
         
             //hour wind speed
             for (let i = 0; i < h_wind_speed.length; i++) {
-                h_wind_speed[i].innerHTML = `${data.hourly[i].wind_speed}km/h`;
+                h_wind_speed[i].innerHTML = `${(data.hourly[i].wind_speed*3.6).toPrecision(2)}km/h`;
                 
             }
 
@@ -204,13 +204,13 @@ function getInput(){
             
            
         }).catch(()=>{
-            alert("[ERROR]:Facing issues while fetching data!")
+            alert("[ERROR] Facing issues while fetching data!")
         });
 
 
         
     }).catch(()=>{
-        alert("[ERROR]:You are trying a location which is not in our database or there might some issues with data fetching");
+        alert("[ERROR]You are trying a location which is not in our database or there might some issues with data fetching");
     });
 }
 
